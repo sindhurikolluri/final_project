@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Appam",
+        "description": "Soft pancake made with fermented rice batter",
+        "price": 18.0,
+        "quantity": 30,
+        "image": "https://t4.ftcdn.net/jpg/04/10/55/63/360_F_410556335_6p6Jz5nq47Xh46ohiKHQzXfUIiNF1Xny.jpg"
+    },
+    {
+        "name": "Bonda",
+        "description": "Deep-fried potato balls with spices",
+        "price": 15.0,
+        "quantity": 28,
+        "image": "https://kalimirchbysmita.com/wp-content/uploads/2016/07/Mysore-Bonda-02-1024x730.jpg"
+    },
+    {
+        "name": "Chana Bhatura",
+        "description": "Deep-fried bread served with spicy chickpeas",
+        "price": 22.0,
+        "quantity": 28,
+        "image": "https://www.cookingcarnival.com/wp-content/uploads/2015/04/Bhatura.jpg"
+    },
+    {
+        "name": "Dosa",
+        "description": "Traditional rice pancake served with chutney and sambar",
+        "price": 10.0,
+        "quantity": 29,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx-glTW9VpM8O7nW1los6X5F9VkIOaj07rgw&s"
+    },
+    {
+        "name": "Garelu",
+        "description": "Deep-fried lentil doughnuts",
+        "price": 18.0,
+        "quantity": 30,
+        "image": "https://static.toiimg.com/thumb/66415582.cms?imgsize=452151&width=800&height=800"
+    },
+    {
+        "name": "Idli",
+        "description": "Steamed rice cakes with coconut chutney",
+        "price": 8.0,
+        "quantity": 30,
+        "image": "https://media.istockphoto.com/id/638506124/photo/idli-with-coconut-chutney-and-sambhar.jpg?s=612x612&w=0&k=20&c=ze1ngBM0LY4w9aqWx_tGe2vTAr4uf36elveTDZ83fgw="
+    },
+    {
+        "name": "Pesarattu",
+        "description": "Green gram dosa with upma filling",
+        "price": 15.0,
+        "quantity": 30,
+        "image": "https://www.theculinarypeace.com/wp-content/uploads/2021/10/Pesarattu-2.jpg"
+    },
+    {
+        "name": "Poori",
+        "description": "Fried wheat bread served with potato curry",
+        "price": 25.0,
+        "quantity": 30,
+        "image": "https://t4.ftcdn.net/jpg/05/21/56/87/360_F_521568710_g4pJZsnYI3pfhGNYu3UuFjCRQTLLpmdC.jpg"
+    },
+    {
+        "name": "Punugulu",
+        "description": "Deep-fried dumplings served with chutney",
+        "price": 20.0,
+        "quantity": 30,
+        "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/01/punugulu-recipe.jpg"
+    },
+    {
+        "name": "Upma",
+        "description": "Savory semolina porridge",
+        "price": 12.0,
+        "quantity": 30,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdhK6kBmIj2pXP0N3T_cVsGNSpjQNJYOmNFg&s"
+    },
+    {
+        "name": "Uttapam",
+        "description": "Thick dosa topped with onions and chilies",
+        "price": 20.0,
+        "quantity": 30,
+        "image": "https://media.istockphoto.com/id/609811304/photo/south-indian-food-uttapam-or-ooththappam-or-uthappa.jpg?s=612x612&w=0&k=20&c=mkFfxwamPGrcXHfPM8V_pA7EBs1SXNS7YvXBdFO_0xo="
+    },
+    {
+        "name": "Vada Pav",
+        "description": "Spicy potato fritter served in a bread roll",
+        "price": 18.0,
+        "quantity": 30,
+        "image": "https://ministryofcurry.com/wp-content/uploads/2024/06/vada-pav-3.jpg"
+    }
+]

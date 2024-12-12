@@ -1,0 +1,25 @@
+<form action="{% url 'sortby' %}" method="post">
+    {% csrf_token %}
+    <select name="sort_by">
+        <option value="price_low_to_high">Price: Low to High</option>
+        <option value="name_a_to_z">Name: A to Z</option>
+    </select>
+    <button type="submit">Sort</button>
+</form>
+
+<form method="POST" action="{% url 'store_selection' %}">
+    {% csrf_token %}
+
+    <ul>
+    {% for product in products %}
+        <li >
+            {{ product.name }} - ${{ product.price }} ({{ product.quantity }} available)
+            <p>{{ product.description }}</p>
+            <button type="submit" name="product_id" value="{{ product.name }}">Add to Cart</button>
+        </li>
+    {% endfor %}
+</ul>
+</form>
+
+
+<a href="{% url 'cart' %}">Go to Cart</a>

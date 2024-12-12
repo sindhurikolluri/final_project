@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        nav.navbar {
+            background-color: #007bff;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form input {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        .search-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .navbar-buttons a {
+            margin-left: 10px;
+            text-decoration: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: #ffc107;
+        }
+
+        .btn-secondary {
+            background-color: #dc3545;
+        }
+
+        .sort-select {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            background-color: #fff;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            background: #fff;
+            padding: 15px;
+            display: flex;
+            border-radius: 8px;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .product-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; 
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-item strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-item p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .product-item .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .product-item .quantity-wrapper button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .product-item .quantity-wrapper input {
+            width: 50px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin: 0 5px;
+            font-size: 16px;
+        }
+
+        .product-item button.add-to-cart {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .product-item button.add-to-cart:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .stock-warning {
+            margin-top: 10px;
+            color: #d9534f;
+            font-size: 14px;
+        }
+
+        .few-stock {
+            margin-top: 10px;
+            color: #ffc107;
+            font-size: 14px;
+        }
+
+        .no-products {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+        }
+        
+    </style>
+    <script>
+        function updateQuantity(button, maxQuantity) {
+            const input = button.parentElement.querySelector("input");
+            let currentValue = parseInt(input.value);
+
+            if (button.classList.contains("plus")) {
+                if (currentValue < maxQuantity) {
+                    input.value = currentValue + 1;
+                }
+            } else {
+                if (currentValue > 0) {
+                    input.value = currentValue - 1;
+                }
+            }
+
+            // Disable the add-to-cart button if quantity is 0
+            const addToCartButton = button.closest(".product-item").querySelector(".add-to-cart");
+            addToCartButton.disabled = input.value == 0;
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="{% url 'store_selection' %}" class="navbar-brand">Food Cart</a>
+        <form action="{% url 'search' %}" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search products..." value="{{ query }}" required>
+            <button type="submit" class="search-button">Search</button>
+        </form>
+        <div class="navbar-buttons">
+            <a href="{% url 'cart_page' %}" class="btn-primary">Go-to-cart ({{ cart_count }})</a>
+            <a href="{% url 'logout' %}" class="btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <h1>Product Page</h1>
+
+    <!-- Sorting Dropdown -->
+    <form method="post" action="{% url 'product_page' %}">
+        {% csrf_token %}
+        <select name="sort_by" class="sort-select" onchange="this.form.submit()">
+            <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Name A-Z</option>
+            <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price Low to High</option>
+        </select>
+    </form>
+
+    <div class="product-grid">
+        {% if products %}
+            {% for product in products %}
+            <div class="product-item">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <strong>{{ product.name }}</strong>
+                ${{ product.price }} ({{ product.quantity }} available)
+                <p>{{ product.description }}</p>
+    
+                {% if product.quantity == 0 %}
+                <p class="stock-warning">Out of Stock</p>
+                {% else %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.name }}">
+                    <div class="quantity-wrapper">
+                        <button type="button" class="minus" onclick="updateQuantity(this, {{ product.quantity }})">-</button>
+                        <input type="number" name="quantity_{{ product.name }}" value="1" min="1" max="{{ product.quantity }}">
+                        <button type="button" class="plus" onclick="updateQuantity(this, {{ product.quantity }})">+</button>
+                    </div>
+                    <button type="submit" class="add-to-cart">Add to Cart</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="no-products">No products found for your search query.</p>
+        {% endif %}
+    </div>
+
+</html>

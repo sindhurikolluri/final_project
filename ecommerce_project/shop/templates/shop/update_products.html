@@ -1,0 +1,8 @@
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="text" name="cost" placeholder="Cost" required>
+    <input type="text" name="quantity" placeholder="Quantity" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Update</button>
+</form>
